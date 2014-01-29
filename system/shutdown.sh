@@ -1,10 +1,11 @@
 #!/bin/bash
 
 for archivo in $(find /tmp/ -maxdepth 1 -name shutdown-*); do
-    if [ $(($(date +%s)-${archivo#*-})) > 300 ]
+    if [ $(($(date +%s)-${archivo#*-})) -gt 300 ]
     then
         rm $archivo
     else
-        echo APAGAR
+        rm $archivo
+        shutdown now
     fi
 done
